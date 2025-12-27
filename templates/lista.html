@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Estudiantes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+
+<h2 class="titulo">Lista de Estudiantes</h2>
+
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in estudiantes %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.direccion }}</td>
+            <td>{{ e.ciudad }}</td>
+            <td class="acciones">
+                <a href="/editar/{{ e.id }}" class="btn btn-editar">
+                    Editar
+                </a>
+                <a href="/eliminar/{{ e.id }}"
+                   class="btn btn-eliminar"
+                   onclick="return confirm('¿Seguro que deseas eliminar este estudiante?')">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/" class="enlace">Agregar nuevo</a>
+
+</body>
+</html>
